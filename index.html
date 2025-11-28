@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="name-list">
+        <h2 class="group-title rgb-text">Group Members</h2>
+
+        <h1 class="rgb-text">Daryl Rain Calatcat</h1>
+        <h1 class="rgb-text">Casile Janica A.</h1>
+        <h1 class="rgb-text">Valencia Alwena C.</h1>
+        <h1 class="rgb-text">Macay Ma. Roselyn</h1>
+        <h1 class="rgb-text">Julius Czar Siglos</h1>
+    </div>
+</div>
+
+    <div class="calculator">
+        <div class="toggle-btn" onclick="toggleMode()">🌙</div>
+        <input type="text" id="display" value="0" readonly>
+
+        <div class="keys">
+            <input type="button" value="AC" class="operator" onclick="clearDisplay()">
+            <input type="button" value="⌫" class="operator" onclick="backspace()">
+            <input type="button" value="%" class="operator" onclick="press('%')">
+            <input type="button" value="÷" class="operator" onclick="press('/')">
+
+            <input type="button" value="7" onclick="press('7')">
+            <input type="button" value="8" onclick="press('8')">
+            <input type="button" value="9" onclick="press('9')">
+            <input type="button" value="×" class="operator" onclick="press('*')">
+
+            <input type="button" value="4" onclick="press('4')">
+            <input type="button" value="5" onclick="press('5')">
+            <input type="button" value="6" onclick="press('6')">
+            <input type="button" value="-" class="operator" onclick="press('-')">
+
+            <input type="button" value="1" onclick="press('1')">
+            <input type="button" value="2" onclick="press('2')">
+            <input type="button" value="3" onclick="press('3')">
+            <input type="button" value="+" class="operator" onclick="press('+')">
+
+            <input type="button" value="0" onclick="press('0')">
+            <input type="button" value="." onclick="press('.')">
+            <input type="button" value="=" class="equal" onclick="calculate()">
+        </div>
+    </div>
+</div>
+
+<script>
+let expression = "";
+
+function press(v) {
+    expression += v;
+    document.getElementById("display").value = expression;
+}
+
+function calculate() {
+    try {
+        expression = eval(expression).toString();
+        document.getElementById("display").value = expression;
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
+}
+
+function clearDisplay() {
+    expression = "";
+    document.getElementById("display").value = "0";
+}
+
+function backspace() {
+    expression = expression.slice(0, -1);
+    document.getElementById("display").value = expression || "0";
+}
+
+function toggleMode() {
+    document.body.classList.toggle("dark");
+
+    let btn = document.querySelector(".toggle-btn");
+    btn.textContent = document.body.classList.contains("dark") ? "🌞" : "🌙";
+}
+</script>
+
+</body>
+</html>
